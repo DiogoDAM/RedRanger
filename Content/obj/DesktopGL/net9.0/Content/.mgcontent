@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>/home/diogodam/Gamedev/RedRanger/Content/../../../Documentos/Pixel Art/atlas_game.png</File>
+    <File>/home/diogodam/Gamedev/RedRanger/Content/Fonts/fnt_default.spritefont</File>
+  </SourceFiles>
+  <DestFiles>
+    <File>Textures/atlas_game.png</File>
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
