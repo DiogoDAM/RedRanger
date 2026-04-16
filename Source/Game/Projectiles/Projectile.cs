@@ -3,16 +3,10 @@ using SapukayaEngine;
 
 namespace RedRanger;
 
-public class Projectile : Entity, ICollidable
+public class Projectile : Entity
 {
 	public float Speed { get; private set; }
 	public int Direction { get; private set; }
-
-	public int Layer { get; set; }
-	public int Mask { get; set; }
-
-	public Collisor Collisor { get; set; }
-	public bool CanCollide { get; set; } = true;
 
 	private readonly float _time;
 
@@ -29,7 +23,7 @@ public class Projectile : Entity, ICollidable
 		Add<Sprite>(sprite);
 		sprite.SetOrigin(OriginPosition.LeftCenter);
 
-		Collisor = new(sprite.Width, sprite.Height, Transform);
+		AddCollider<BoxCollider>(new(sprite.Width, sprite.Height, Transform));
 
 		Add<ProjectileMovement>(new(Speed, Direction));
 
@@ -43,17 +37,8 @@ public class Projectile : Entity, ICollidable
 		Destroy();
 	}
 
-	public void OnCollide(Entity other)
+	public override void OnCollide(Entity other)
 	{
 		Destroy();
-		System.Console.WriteLine("Ai me destrui");
-	}
-
-	public bool Collides(ICollidable other)
-	{
-		if(!other.CanCollide || !this.CanCollide || this == other)
-			return false;
-
-		return other.Collisor.Shape.Intersects(Collisor.Shape);
 	}
 }

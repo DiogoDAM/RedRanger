@@ -21,6 +21,12 @@ public class Entity : IDisposable
 
 	public Scene Scene;
 
+	public bool CanCollide { get; protected set; } = true;
+	public int Layer { get; protected set; }
+	public int Mask { get; protected set; }
+
+	public Collider Collider { get; private set; }
+
 	public Entity()
 	{
 		Transform = new();
@@ -109,6 +115,36 @@ public class Entity : IDisposable
 			Scene.Remove(this);
 			Pause();
 		}
+	}
+
+	public void AddCollider<T>(T col) where T : Collider
+	{
+		if(col == null)
+			throw new ArgumentNullException("Collider col is null");
+
+		Collider = col;
+		Add<T>(col);
+	}
+
+	public void RemoveCollider<T>() where T : Collider
+	{
+		if(Collider != null)
+		{
+			_components.Remove<T>();
+			Collider = null;
+		}
+	}
+
+	public bool Collides(Entity other)
+	{
+		if(!CanCollide || !other.CanCollide || !Alive || !other.Alive)
+			return false;
+
+		return Collider.Intersects(other.Collider);
+	}
+
+	public virtual void OnCollide(Entity other)
+	{
 	}
 
 	public void Dispose()
