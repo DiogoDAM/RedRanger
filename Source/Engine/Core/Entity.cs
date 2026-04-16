@@ -19,6 +19,8 @@ public class Entity : IDisposable
 
 	private ComponentsManager _components;
 
+	public Scene Scene;
+
 	public Entity()
 	{
 		Transform = new();
@@ -101,8 +103,12 @@ public class Entity : IDisposable
 
 	public void Destroy()
 	{
-		ToDestroy = true;
-		Pause();
+		if(!ToDestroy)
+		{
+			ToDestroy = true;
+			Scene.Remove(this);
+			Pause();
+		}
 	}
 
 	public void Dispose()

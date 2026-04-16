@@ -33,3 +33,4 @@
 /home/diogodam/Gamedev/RedRanger/obj/Debug/net9.0/ref/RedRanger.dll
 /home/diogodam/Gamedev/RedRanger/bin/Debug/net9.0/Content/Fonts/fnt_default.xnb
 /home/diogodam/Gamedev/RedRanger/bin/Debug/net9.0/Content/Textures/atlas_game.xnb
+/home/diogodam/Gamedev/RedRanger/obj/Debug/net9.0/RedRanger.sourcelink.json

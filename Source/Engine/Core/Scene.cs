@@ -14,11 +14,13 @@ public abstract class Scene : IDisposable
 	public bool CanUpdate => Active && Running && !Disposed;
 	public bool CanDraw => Visible && Running && !Disposed;
 
-	private List<Entity> _entities;
+	protected EntitiesManager _entities;
+
+	public int EntitiesCount => _entities.Count;
 
 	public Scene()
 	{
-		_entities = new();
+		_entities = new(this);
 	}
 
 	public void Resume()
@@ -51,54 +53,26 @@ public abstract class Scene : IDisposable
 			throw new ArgumentNullException("e Entity is null");
 
 		_entities.Add(e);
-
-		e.Added();
-		e.Start();
-		e.Resume();
 	}
 
-	public void Remove(Entity e)
+	public bool Remove(Entity e)
 	{
 		if(e == null)
 			throw new ArgumentNullException("e Entity is null");
 
-		var entity = _entities.Find(i => i == e);
-
-		_entities.Remove(entity);
-
-		entity.Removed();
+		return _entities.Remove(e);
 	}
 
 	public virtual void Start() { }
 
 	public virtual void Update(float dt) 
 	{
-		List<Entity> toRemove = new();
-
-		for(int i=0; i<_entities.Count; i++)
-		{
-			var entity = _entities[i];
-
-			if(entity.CanUpdate)
-				entity.Update(dt);
-
-			if(entity.ToDestroy)
-			{
-				toRemove.Add(entity);
-			}
-		}
-
-		foreach(var entity in toRemove)
-		{
-			_entities.Remove(entity);
-			entity.Removed();
-			entity.Dispose();
-		}
+		_entities.Update(dt);
 	}
 
 	public virtual void Draw() 
 	{
-		foreach(var entity in _entities)
+		foreach(Entity entity in _entities)
 		{
 			if(entity.CanDraw)
 				entity.Draw();
