@@ -31,7 +31,7 @@ public abstract class UiElement : IDisposable
 		Transform = new();
 	}
 
-	public void AddChild(UiElement child)
+	public virtual void AddChild(UiElement child)
 	{
 		if(child == null)
 			throw new ArgumentNullException("UiElement child is null");
