@@ -15,22 +15,44 @@ public sealed class CollisionManager : IDisposable
 	public void Update(float dt)
 	{
 		List<Entity> entities = _scene.All;
+		int count = entities.Count;
 
-		foreach(var e1 in entities)
+		for(int i=0; i<count; i++)
 		{
-			foreach(var e2 in entities)
+			Entity e1 = entities[i];
+			for(int j=i+1; j<count; j++)
 			{
-				if(e1.Equals(e2))
+				Entity e2 = entities[j];
+
+				if(ReferenceEquals(e1, e2))
 					continue;
 
-				if((e1.Layers & e2.Masks) == 0) 
+				if((e1.Layers & e2.Masks) == 0 &&
+					(e2.Layers & e1.Masks) == 0) 
 					continue;
 
-				if(e1.Collides(e2))
+				foreach(var col1 in e1.Colliders)
 				{
-					e1.OnCollide(e2);
-					e2.OnCollide(e1);
+					foreach(var col2 in e2.Colliders)
+					{
+						if(!col1.Intersects(col2))
+							continue;
+
+						if(col1.IsTrigger || col2.IsTrigger)
+						{
+							e1.OnTrigger(e2);
+							e2.OnTrigger(e1);
+						}
+						else
+						{
+							CollisionHelper.ResolveCollision(col1, col2);
+
+							e1.OnCollide(e2);
+							e2.OnCollide(e1);
+						}
+					}
 				}
+
 			}
 		}
 	}

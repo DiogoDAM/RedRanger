@@ -24,7 +24,7 @@ public sealed class Enemy : Entity
 		Add<EnemyBasicMovement>(new(Speed));
 
 		Add<Sprite>(Sprite);
-		AddCollider<BoxCollider>(new (Sprite.Width, Sprite.Height, Transform));
+		AddCollider(new BoxCollider(Sprite.Width, Sprite.Height, Transform));
 	}
 
     public override void Update(float dt)
@@ -35,7 +35,7 @@ public sealed class Enemy : Entity
 			Destroy();
     }
 
-	public override void OnCollide(Entity other)
+	public override void OnTrigger(Entity other)
 	{
 		if(other is Player player)
 		{

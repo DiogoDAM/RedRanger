@@ -25,8 +25,9 @@ public class Projectile : Entity
 		animation.Stop();
 		animation.SetOrigin(OriginPosition.LeftCenter);
 
-		AddCollider<BoxCollider>(new(12, 4, Transform));
-		Collider.Transform.LocalPosition = Vector2.One;
+		var box = new BoxCollider(12, 4, Transform);
+		AddCollider(box);
+		box.Transform.LocalPosition = Vector2.One;
 
 		Add<ProjectileMovement>(new(Speed, Direction));
 
@@ -40,7 +41,7 @@ public class Projectile : Entity
 		Destroy();
 	}
 
-	public override void OnCollide(Entity other)
+	public override void OnTrigger(Entity other)
 	{
 		Explosion explosion = new(Transform.GlobalPosition, ExplosionType.Small);
 		Scene.Add(explosion);

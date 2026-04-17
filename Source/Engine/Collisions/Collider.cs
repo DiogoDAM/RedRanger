@@ -2,34 +2,46 @@ using System;
 
 namespace SapukayaEngine;
 
-public abstract class Collider : Component
+public abstract class Collider : IDisposable
 {
 	public Transform Transform { get; private set; }
 
 	public bool CanCollide;
+
+	public string Tag;
+
+	public bool IsTrigger = true;
+
+	public Entity Entity { get; private set; }
 
 	public Collider()
 	{
 		Transform = new();
 	}
 
-    public override void Attached(Entity entity)
+    public void Attached(Entity entity)
     {
-        base.Attached(entity);
+		Entity = entity;
 
 		CanCollide = true;
 		Transform.Parent = entity.Transform;
     }
 
-	public override void Distach()
+	public void Distach()
 	{
-		base.Distach();
+		Entity = null;
 
 		CanCollide = false;
 	}
 
 	public bool Intersects(Collider col)
 	{
+		if(ReferenceEquals(this, col))
+			return false;
+
+		if(!col.CanCollide || !CanCollide)
+			return false;
+
 		switch(col)
 		{
 			case BoxCollider box: return this.Intersects(box);
@@ -39,11 +51,11 @@ public abstract class Collider : Component
 
 	public abstract bool Intersects(BoxCollider other);
 
-	protected override void Dispose(bool disposable)
+	public void Dispose()
 	{
-		base.Dispose(disposable);
-
 		Transform.Parent = null;
 		Transform = null;
+
+		GC.SuppressFinalize(this);
 	}
 }

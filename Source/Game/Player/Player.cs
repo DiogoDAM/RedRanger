@@ -23,10 +23,10 @@ public sealed class Player : Entity
 
 		Add<PlayerShoot>(new(0.1f));
 
-		AddCollider<BoxCollider>(new( 42, 5, Transform));
+		AddCollider(new BoxCollider( 42, 5, Transform));
 	}
 
-    public override void OnCollide(Entity other)
+    public override void OnTrigger(Entity other)
     {
 		Lifes--;
 

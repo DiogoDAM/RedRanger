@@ -25,9 +25,7 @@ public class Entity : IDisposable
 	public int Layers { get; set; }
 	public int Masks { get; set; }
 
-	public Collider Collider { get; private set; }
-
-	public Guid Id { get; private set; }
+	public List<Collider> Colliders { get; private set; }
 
 	public Entity()
 	{
@@ -35,7 +33,7 @@ public class Entity : IDisposable
 
 		_components = new(this);
 
-		Id = Guid.NewGuid();
+		Colliders = new();
 	}
 
 	public void Add<T>(T component) where T : Component
@@ -121,53 +119,37 @@ public class Entity : IDisposable
 		}
 	}
 
-	public void AddCollider<T>(T col) where T : Collider
+	public void AddCollider(Collider col)
 	{
 		if(col == null)
 			throw new ArgumentNullException("Collider col is null");
 
-		Collider = col;
-		Add<T>(col);
+		Colliders.Add(col);
+		col.Attached(this);
 	}
 
-	public void RemoveCollider<T>() where T : Collider
+	public void RemoveCollider(string tag) 
 	{
-		if(Collider != null)
-		{
-			_components.Remove<T>();
-			Collider = null;
-		}
-	}
+		if(string.IsNullOrEmpty(tag))
+			throw new ArgumentNullException("tag is null or empty");
 
-	public bool Collides(Entity other)
-	{
-		if(!CanCollide || !other.CanCollide || !Alive || !other.Alive)
-			return false;
+		var col = Colliders.Find((c) => c.Tag == tag);
 
-		return Collider.Intersects(other.Collider);
+		if(col == null)
+			return;
+
+		Colliders.Remove(col);
+		col.Distach();
+		col.Dispose();
 	}
 
 	public virtual void OnCollide(Entity other)
 	{
 	}
 
-    public override bool Equals(object obj)
-    {
-		if(ReferenceEquals(this, obj))
-			return true;
-
-		if(obj == null || obj.GetType() != GetType())
-			return false;
-
-		Entity other = (Entity)obj;
-
-		return Id.Equals(other.Id);
-    }
-
-    public override int GetHashCode()
-    {
-        return base.GetHashCode();
-    }
+	public virtual void OnTrigger(Entity other)
+	{
+	}
 
 	public void Dispose()
 	{
