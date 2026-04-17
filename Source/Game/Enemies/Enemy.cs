@@ -14,7 +14,9 @@ public sealed class Enemy : Entity
 	public Enemy(Vector2 pos) : base()
 	{
 		Transform.LocalPosition = pos;
-		Layer = GameLayers.Enemy;
+
+		Layers = GameLayers.Enemy;
+		Masks = GameLayers.PlayerProjectile + GameLayers.Player;
 	}
 
 	public override void Added()

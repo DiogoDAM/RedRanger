@@ -18,9 +18,14 @@ public abstract class Scene : IDisposable
 
 	public int EntitiesCount => _entities.Count;
 
+	public List<Entity> All => _entities.All;
+
+	protected CollisionManager _collisionManager;
+
 	public Scene()
 	{
 		_entities = new(this);
+		_collisionManager = new(this);
 	}
 
 	public void Resume()
@@ -67,6 +72,8 @@ public abstract class Scene : IDisposable
 
 	public virtual void Update(float dt) 
 	{
+		_collisionManager.Update(dt);
+
 		_entities.Update(dt);
 	}
 

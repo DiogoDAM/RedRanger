@@ -22,16 +22,20 @@ public class Entity : IDisposable
 	public Scene Scene;
 
 	public bool CanCollide { get; protected set; } = true;
-	public int Layer { get; protected set; }
-	public int Mask { get; protected set; }
+	public int Layers { get; set; }
+	public int Masks { get; set; }
 
 	public Collider Collider { get; private set; }
+
+	public Guid Id { get; private set; }
 
 	public Entity()
 	{
 		Transform = new();
 
 		_components = new(this);
+
+		Id = Guid.NewGuid();
 	}
 
 	public void Add<T>(T component) where T : Component
@@ -146,6 +150,24 @@ public class Entity : IDisposable
 	public virtual void OnCollide(Entity other)
 	{
 	}
+
+    public override bool Equals(object obj)
+    {
+		if(ReferenceEquals(this, obj))
+			return true;
+
+		if(obj == null || obj.GetType() != GetType())
+			return false;
+
+		Entity other = (Entity)obj;
+
+		return Id.Equals(other.Id);
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
 
 	public void Dispose()
 	{

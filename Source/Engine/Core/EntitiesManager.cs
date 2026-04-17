@@ -16,6 +16,8 @@ public sealed class EntitiesManager : IDisposable, IEnumerable, IEnumerable<Enti
 
 	private readonly Scene _scene;
 
+	public List<Entity> All => _entities;
+
 	public EntitiesManager(Scene scene)
 	{
 		_scene = scene;

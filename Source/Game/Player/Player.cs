@@ -8,6 +8,13 @@ public sealed class Player : Entity
 { 
 	public int Lifes { get; private set; } = Globals.PlayerLifes;
 
+	public Player() : base()
+	{
+		Layers = GameLayers.Player;
+
+		Masks = GameLayers.Enemy;
+	}
+
 	public override void Added()
 	{
 		Add<HSprite>(Globals.GameAtlas.CreateHSprite("player"));
@@ -17,9 +24,6 @@ public sealed class Player : Entity
 		Add<PlayerShoot>(new(0.1f));
 
 		AddCollider<BoxCollider>(new( 42, 5, Transform));
-		Collider.Transform.LocalPosition = new Vector2(16, 4);
-
-		Layer = GameLayers.Player;
 	}
 
     public override void OnCollide(Entity other)
