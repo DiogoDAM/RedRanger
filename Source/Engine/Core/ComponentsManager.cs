@@ -50,11 +50,6 @@ public sealed class ComponentsManager : IDisposable
 			component.Dispose();
 	}
 
-	public T Get<T>() where T : Component
-	{
-		return (T)Components[typeof(T)];
-	}
-
 	public void Clear()
 	{
 		foreach(var component in Components.Values)
