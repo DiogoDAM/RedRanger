@@ -28,18 +28,6 @@ public sealed class GameScene : Scene
 
     public override void Update(float dt)
     {
-		// foreach(var enemy in _enemies)
-		// {
-		// 	foreach(var projectile in _projectiles)
-		// 	{
-		// 		if(projectile.Collides(enemy))
-		// 		{
-		// 			enemy.OnCollide(projectile);
-		// 			projectile.OnCollide(enemy);
-		// 		}
-		// 	}
-		// }
-
 		CollisionHelper.Collide<Enemy, Projectile>(_enemies, _projectiles);
 
         base.Update(dt);

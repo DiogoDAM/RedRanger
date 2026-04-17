@@ -8,7 +8,7 @@ public sealed class HSprite : DrawableComponent
 {
 	public readonly Texture2D Texture;
 
-	private readonly Rectangle[] _frames;
+	public readonly Rectangle[] Frames;
 
 	public readonly int FramesCount;
 
@@ -17,11 +17,14 @@ public sealed class HSprite : DrawableComponent
 
 	private int _currentFrame = 0;
 
+	public override int Width => FramesWidth;
+	public override int Height => FramesHeight;
+
 	public HSprite(Texture2D texture, int x, int y, int framesWidth, int framesHeight, int amount)
 	{
 		Texture = texture;
 
-		_frames = new Rectangle[amount];
+		Frames = new Rectangle[amount];
 
 		FramesCount = amount;
 
@@ -29,14 +32,14 @@ public sealed class HSprite : DrawableComponent
 		FramesHeight = framesHeight;
 
 		for(int i=0; i<amount; i++)
-			_frames[i] = new Rectangle(x + (i * FramesWidth), y, FramesWidth, FramesHeight);
+			Frames[i] = new Rectangle(x + (i * FramesWidth), y, FramesWidth, FramesHeight);
 	}
 
 	public HSprite(Texture2D texture, Rectangle[] frames)
 	{
 		Texture = texture;
 
-		_frames = frames;
+		Frames = frames;
 
 		FramesCount = frames.Length;
 
@@ -56,7 +59,7 @@ public sealed class HSprite : DrawableComponent
 	{
 		Engine.SpriteBatch.Draw(Texture,
 				Entity.Transform.GlobalPosition,
-				_frames[_currentFrame],
+				Frames[_currentFrame],
 				Color,
 				Entity.Transform.GlobalRotation,
 				Origin,

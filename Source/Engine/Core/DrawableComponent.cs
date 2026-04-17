@@ -14,8 +14,8 @@ public abstract class DrawableComponent : Component
 
 	public bool Visible = true;
 
-	public virtual int Width { get; set; }
-	public virtual int Height { get; set; }
+	public virtual int Width { get; protected set; }
+	public virtual int Height { get; protected set; }
 
 	public bool CanDraw => Visible && !Disposed;
 

@@ -39,6 +39,9 @@ public class Projectile : Entity
 
 	public override void OnCollide(Entity other)
 	{
+		Explosion explosion = new(Transform.GlobalPosition);
+		Scene.Add(explosion);
+
 		Destroy();
 	}
 }
