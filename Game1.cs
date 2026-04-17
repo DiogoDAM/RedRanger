@@ -23,6 +23,7 @@ public class Game1 : GameManager
 
 		layer.ChangeScene<GameScene>();
 
+		AddLayer<UiLayer>();
     }
 
     protected override void LoadContent()
