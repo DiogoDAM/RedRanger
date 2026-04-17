@@ -19,7 +19,7 @@ public sealed class PlayerShoot : Component
 	{
 		var proj = new Projectile(400f, 1, 2f);
 		proj.Transform = new(Entity.Transform);
-		proj.Transform.LocalPosition += new Vector2(40, 12);
+		proj.Transform.LocalPosition += new Vector2(40, 12); // to spawn in front of the player
 		proj.Layers = GameLayers.PlayerProjectile;
 		proj.Masks = GameLayers.Enemy;
 

@@ -24,7 +24,7 @@ public sealed class Enemy : Entity
 		Add<EnemyBasicMovement>(new(Speed));
 
 		Add<Sprite>(Sprite);
-		var collider = new CircleCollider(15);
+		var collider = new CircleCollider(8);
 		collider.Transform.LocalPosition = new Vector2(9,9);
 		AddCollider(collider);
 	}

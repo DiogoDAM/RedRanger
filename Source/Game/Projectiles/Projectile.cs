@@ -27,7 +27,7 @@ public class Projectile : Entity
 
 		var box = new BoxCollider(12, 4);
 		AddCollider(box);
-		box.Transform.LocalPosition = Vector2.One;
+		box.Transform.LocalPosition = new Vector2(-3, 1);
 
 		Add<ProjectileMovement>(new(Speed, Direction));
 

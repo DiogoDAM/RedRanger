@@ -9,8 +9,6 @@ public sealed class Player : Entity
 { 
 	public int Lifes { get; private set; } = Globals.PlayerLifes;
 
-	private BoxCollider _collider;
-
 	public Player() : base()
 	{
 		Layers = GameLayers.Player;
@@ -26,21 +24,10 @@ public sealed class Player : Entity
 
 		Add<PlayerShoot>(new(0.1f));
 
-		_collider = new(42, 5);
+		BoxCollider _collider = new(42, 5);
 		_collider.Transform.LocalPosition = new Vector2(16, 5);
 		AddCollider(_collider);
 	}
-
-    public override void Draw()
-    {
-        base.Draw();
-
-		Texture2D texture = ShapeDrawer.LineRectangle(_collider.Width, _collider.Height, Color.Magenta);
-		Engine.SpriteBatch.Draw(texture,
-				_collider.Transform.GlobalPosition,
-				new Rectangle(0, 0, _collider.Width, _collider.Height),
-				Color.White);
-    }
 
     public override void OnTrigger(Entity other)
     {

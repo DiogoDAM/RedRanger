@@ -38,6 +38,9 @@ public class Game1 : GameManager
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
+		if(Engine.Input.Keyboard.IsKeyPressed(Keys.F8))
+			GameManager.Instance.GetLayer<DebugLayer>().Visible = !GameManager.Instance.GetLayer<DebugLayer>().Visible;
+
         base.Update(gameTime);
     }
 
