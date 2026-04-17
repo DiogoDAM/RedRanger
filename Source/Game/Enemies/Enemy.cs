@@ -24,7 +24,9 @@ public sealed class Enemy : Entity
 		Add<EnemyBasicMovement>(new(Speed));
 
 		Add<Sprite>(Sprite);
-		AddCollider(new BoxCollider(Sprite.Width, Sprite.Height, Transform));
+		var collider = new CircleCollider(16);
+		collider.Transform.LocalPosition = new Vector2(9,9);
+		AddCollider(collider);
 	}
 
     public override void Update(float dt)

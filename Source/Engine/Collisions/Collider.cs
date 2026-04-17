@@ -45,11 +45,13 @@ public abstract class Collider : IDisposable
 		switch(col)
 		{
 			case BoxCollider box: return this.Intersects(box);
+			case CircleCollider circle: return this.Intersects(circle);
 			default: throw new NotImplementedException("Collisor type is unknown");
 		}
 	}
 
 	public abstract bool Intersects(BoxCollider other);
+	public abstract bool Intersects(CircleCollider other);
 
 	public void Dispose()
 	{

@@ -23,7 +23,7 @@ public sealed class Player : Entity
 
 		Add<PlayerShoot>(new(0.1f));
 
-		AddCollider(new BoxCollider( 42, 5, Transform));
+		AddCollider(new BoxCollider( 42, 5));
 	}
 
     public override void OnTrigger(Entity other)

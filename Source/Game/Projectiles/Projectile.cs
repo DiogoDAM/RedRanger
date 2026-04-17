@@ -25,7 +25,7 @@ public class Projectile : Entity
 		animation.Stop();
 		animation.SetOrigin(OriginPosition.LeftCenter);
 
-		var box = new BoxCollider(12, 4, Transform);
+		var box = new BoxCollider(12, 4);
 		AddCollider(box);
 		box.Transform.LocalPosition = Vector2.One;
 
