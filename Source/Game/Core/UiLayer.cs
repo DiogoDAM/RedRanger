@@ -18,11 +18,9 @@ public sealed class UiLayer : Layer
     {
         base.Activate();
 
-		var uiLifeBg = new UiSprite(Globals.GameAtlas.Texture, Globals.GameAtlas.GetRegion("ui_life_bg"));
-
 		var horizontalContainer = new UiHorizontalContainer();
 		horizontalContainer.Gap = 16;
-		horizontalContainer.Transform.LocalPosition = new Vector2(16, 2);
+		horizontalContainer.Transform.LocalPosition = new Vector2(300, 10);
 
 		for(int i=0; i<Globals.PlayerLifes; i++)
 		{
@@ -30,9 +28,7 @@ public sealed class UiLayer : Layer
 			horizontalContainer.AddChild(uiLifeBattery);
 		}
 
-		uiLifeBg.AddChild(horizontalContainer);
-
-		Root.AddChild(uiLifeBg);
+		Root.AddChild(horizontalContainer);
     }
 
 	public override void Draw()

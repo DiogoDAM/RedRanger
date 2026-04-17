@@ -16,6 +16,8 @@ public class GameManager : Game
 	public int VirtualWidth { get; private set; }
 	public int VirtualHeight { get; private set; }
 
+	public Canvas GameCanvas;
+
 	public bool DebugMode { get; private set; }
 
 	public List<Layer> Layers { get; private set; }
@@ -43,6 +45,9 @@ public class GameManager : Game
 		Engine.Initialize(this);
 
         base.Initialize();
+
+		GameCanvas = new();
+		GameCanvas.OnWindowSizeChanged();
     }
 
     protected override void LoadContent()
@@ -67,13 +72,15 @@ public class GameManager : Game
 
     protected override void Draw(GameTime gameTime)
     {
-		Engine.GraphicsDevice.Clear(Engine.ClearColor);
+		GameCanvas.StartRenderTarget();
 
-		for(int i=0; i<Layers.Count; i++)
-		{
-			if(Layers[i].CanDraw)
-				Layers[i].Draw();
-		}
+			for(int i=0; i<Layers.Count; i++)
+			{
+				if(Layers[i].CanDraw)
+					Layers[i].Draw();
+			}
+
+		GameCanvas.EndRenderTarget();
 
         base.Draw(gameTime);
     }

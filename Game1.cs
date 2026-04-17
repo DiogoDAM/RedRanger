@@ -8,7 +8,7 @@ namespace RedRanger;
 
 public class Game1 : GameManager
 {
-    public Game1() : base(1280, 720, "Red Ranger", false)
+    public Game1() : base(1280, 720, "Red Ranger", false, true)
     {
 		SetVirtualSize(640, 360);
     }
@@ -24,6 +24,9 @@ public class Game1 : GameManager
 		layer.ChangeScene<GameScene>();
 
 		AddLayer<UiLayer>();
+
+		if(DebugMode)
+			AddLayer<DebugLayer>();
     }
 
     protected override void LoadContent()
