@@ -22,8 +22,6 @@ public abstract class UiElement : IDisposable
 
 	public Transform Transform { get; protected set; }
 
-	public float Gap { get; set; }
-
 	public virtual int Width { get; protected set; }
 	public virtual int Height { get; protected set; }
 

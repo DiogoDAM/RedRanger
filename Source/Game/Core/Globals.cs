@@ -15,6 +15,9 @@ public static class Globals
 		GameAtlas.AddRegion("player_projectile", 0, 32, 12, 4);
 		GameAtlas.AddHFrames("small_explosion", 0, 48, 16, 16, 3);
 
+		GameAtlas.AddRegion("ui_life_bg", 0, 128, 192, 48);
+		GameAtlas.AddRegion("ui_life_battery", 192, 128, 32, 48);
+
 		GameAtlas.AddRegion("enemy_demus", 0, 80, 32, 32);
 	}
 }

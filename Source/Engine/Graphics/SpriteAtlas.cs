@@ -29,6 +29,18 @@ public sealed class SpriteAtlas : IDisposable
 		_sourceRectangles[name] = new Rectangle(x, y, w, h);
 	}
 
+	public Rectangle GetRegion(string name)
+	{
+		if(string.IsNullOrEmpty(name))
+			throw new ArgumentNullException("name is null or empty");
+
+		if(!_sourceRectangles.ContainsKey(name))
+			throw new KeyNotFoundException("Region name not found. value: " + name);
+
+		return _sourceRectangles[name];
+	}
+
+
 	public Sprite CreateSprite(string name)
 	{
 		if(string.IsNullOrEmpty(name))
