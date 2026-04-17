@@ -52,6 +52,38 @@ public abstract class UiElement : IDisposable
 		child.Removed();
 	}
 
+	public void PopChild()
+	{
+		if(Children.Count <= 0)
+			return;
+
+		var child = Children[Children.Count-1];
+		Children.RemoveAt(Children.Count-1);
+
+		child.Pause();
+		child.Removed();
+	}
+
+	public T GetChild<T>() where T : UiElement
+	{
+		foreach(var child in Children)
+		{
+			if(child is T)
+				return (T)child;
+		}
+
+		foreach(var child in Children)
+		{
+			T found = null;
+
+			found = child.GetChild<T>();
+			if(found != null)
+				return found;
+		}
+
+		return null;
+	}
+
 	public virtual void Added(UiElement parent)
 	{
 		Parent = parent;

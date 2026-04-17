@@ -49,5 +49,7 @@ public class UiSprite : UiElement
 				Transform.GlobalScale,
 				Flip,
 				Depth);
+
+		base.Draw();
 	}
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RedRanger")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+204e1cfba9d832e15d1deaa8d89fa4277f393b76")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c3f8405579a44d684f1a3577e8293e33e0408a3")]
 [assembly: System.Reflection.AssemblyProductAttribute("RedRanger")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RedRanger")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

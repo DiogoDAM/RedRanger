@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Xna.Framework;
 using SapukayaEngine;
 
 namespace RedRanger;
@@ -19,11 +20,13 @@ public class Projectile : Entity
 
     public override void Added()
     {
-		var sprite = Globals.GameAtlas.CreateSprite("player_projectile");
-		Add<Sprite>(sprite);
-		sprite.SetOrigin(OriginPosition.LeftCenter);
+		var animation = new Animation(Globals.GameAtlas.CreateHSprite("player_projectile"), 0.05f, true);
+		Add<Animation>(animation);
+		animation.Stop();
+		animation.SetOrigin(OriginPosition.LeftCenter);
 
-		AddCollider<BoxCollider>(new(sprite.Width, sprite.Height, Transform));
+		AddCollider<BoxCollider>(new(12, 4, Transform));
+		Collider.Transform.LocalPosition = Vector2.One;
 
 		Add<ProjectileMovement>(new(Speed, Direction));
 
@@ -39,7 +42,7 @@ public class Projectile : Entity
 
 	public override void OnCollide(Entity other)
 	{
-		Explosion explosion = new(Transform.GlobalPosition);
+		Explosion explosion = new(Transform.GlobalPosition, ExplosionType.Small);
 		Scene.Add(explosion);
 
 		Destroy();

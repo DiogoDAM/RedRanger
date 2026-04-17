@@ -21,4 +21,16 @@ public static class CollisionHelper
 			}
 		}
 	}
+
+	public static void Collide<T, T2>(T entity, List<T2> cols2) where T : Entity where T2 : Entity
+	{
+		foreach(var col2 in cols2)
+		{
+			if(entity.Collides(col2))
+			{
+				entity.OnCollide(col2);
+				col2.OnCollide(entity);
+			}
+		}
+	}
 }

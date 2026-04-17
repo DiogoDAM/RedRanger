@@ -49,6 +49,17 @@ public sealed class EntitiesManager : IDisposable, IEnumerable, IEnumerable<Enti
 		return (List<T>)outList;
 	}
 
+	public T Get<T>() where T : Entity
+	{
+		foreach(var entity in _entities)
+		{
+			if(entity is T)
+				return (T)entity;
+		}
+
+		return null;
+	}
+
 	public void Add(Entity e)
 	{
 		if(_toAdd.Contains(e) || _entities.Contains(e))

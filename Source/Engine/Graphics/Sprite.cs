@@ -73,5 +73,7 @@ public sealed class Sprite : DrawableComponent
 				Entity.Transform.GlobalScale,
 				Flip,
 				Depth);
+
+		base.Draw();
     }
 }

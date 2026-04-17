@@ -122,6 +122,16 @@ public sealed class Animation : DrawableComponent
 		DurationLeft = CurrentFrameDuration;
 	}
 
+	public void Stop()
+	{
+		IsRunning = false;
+	}
+
+	public void Resume()
+	{
+		IsRunning = true;
+	}
+
     public override void Attached(Entity entity)
     {
         base.Attached(entity);

@@ -14,6 +14,7 @@ public sealed class Enemy : Entity
 	public Enemy(Vector2 pos) : base()
 	{
 		Transform.LocalPosition = pos;
+		Layer = GameLayers.Enemy;
 	}
 
 	public override void Added()
@@ -34,8 +35,22 @@ public sealed class Enemy : Entity
 
 	public override void OnCollide(Entity other)
 	{
+		if(other is Player player)
+		{
+			Destroy();
+
+			Explosion explosion = new(Transform.GlobalPosition, ExplosionType.Big);
+			Scene.Add(explosion);
+
+			return;
+		}
+
 		Health -= 1;
 		if(Health == 0)
+		{
+			Explosion explosion = new(Transform.GlobalPosition, ExplosionType.Big);
+			Scene.Add(explosion);
 			Destroy();
+		}
 	}
 }
