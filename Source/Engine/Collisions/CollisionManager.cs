@@ -27,6 +27,9 @@ public sealed class CollisionManager : IDisposable
 				if(ReferenceEquals(e1, e2))
 					continue;
 
+				if(e1.Colliders.Count <= 0 || e2.Colliders.Count <= 0)
+					continue;
+
 				if((e1.Layers & e2.Masks) == 0 &&
 					(e2.Layers & e1.Masks) == 0) 
 					continue;
