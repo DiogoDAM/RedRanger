@@ -11,6 +11,8 @@ public sealed class Enemy : Entity
 
 	public int Health = 5;
 
+	public int Score { get; set; }
+
 	public Enemy(Vector2 pos) : base()
 	{
 		Transform.LocalPosition = pos;
@@ -55,6 +57,8 @@ public sealed class Enemy : Entity
 			Explosion explosion = new(Transform.GlobalPosition, ExplosionType.Big);
 			Scene.Add(explosion);
 			Destroy();
+
+			Globals.Score += Score;
 		}
 	}
 }

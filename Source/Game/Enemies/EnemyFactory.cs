@@ -23,6 +23,7 @@ public sealed class EnemyFactory : Entity
 			case EnemyType.Demus:
 				enemy.Speed = 120f;
 				enemy.Sprite = Globals.GameAtlas.CreateSprite("enemy_demus");
+				enemy.Score = 1;
 				break;
 		}
 

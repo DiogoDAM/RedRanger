@@ -16,6 +16,8 @@ public static class Globals
 	
 	public static int PlayerLifes = 3;
 
+	public static int Score = 0;
+
 	public static void Initialize()
 	{
 		GameAtlas = new("Textures/atlas_game");

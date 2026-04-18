@@ -8,6 +8,11 @@ namespace RedRanger;
 
 public sealed class DebugLayer : Layer
 {
+	private UiRoot _uiRoot;
+	private UiLabel _uiTextEntities;
+
+	private List<Entity> _entities;
+
 	public DebugLayer() : base()
 	{
 	}
@@ -16,15 +21,26 @@ public sealed class DebugLayer : Layer
 	{
 		Active = true;
 		Running = true;
+
+		_uiRoot = new();
+
+		_entities = GameManager.Instance.GetLayer<GameLayer>().ActiveScene.All;
+
+		_uiTextEntities = new("Fonts/fnt_default");
+
+		_uiRoot.AddChild(_uiTextEntities);
 	}
+
+    public override void Update(float dt)
+    {
+		_uiTextEntities.SetText("Entities in Scene: " + _entities.Count);
+    }
 
     public override void Draw()
     {
-		List<Entity> entities = GameManager.Instance.GetLayer<GameLayer>().ActiveScene.All;
-
 		Engine.SpriteBatch.Begin(samplerState: SamplerState.PointWrap);
 		
-			foreach(var entity in entities)
+			foreach(var entity in _entities)
 			{
 				if(entity is Enemy enemy)
 				{
@@ -51,6 +67,12 @@ public sealed class DebugLayer : Layer
 				}
 			}
 
+		Engine.SpriteBatch.End();
+
+		Engine.SpriteBatch.Begin(samplerState: SamplerState.PointWrap);
+
+			_uiRoot.Draw();
+		
 		Engine.SpriteBatch.End();
     }
 }

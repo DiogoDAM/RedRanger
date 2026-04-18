@@ -9,6 +9,8 @@ public sealed class UiLayer : Layer
 {
 	public UiRoot Root;
 
+	private UiLabel _scoreLabel;
+
 	public UiLayer()
 	{
 		Root = new();
@@ -29,6 +31,18 @@ public sealed class UiLayer : Layer
 		}
 
 		Root.AddChild(horizontalContainer);
+
+		_scoreLabel = new("Fonts/fnt_default");
+		_scoreLabel.SetText($"Scores: {Globals.Score}");
+
+		_scoreLabel.Transform.LocalPosition = new Vector2(Root.Width-_scoreLabel.Width-24f, 5f);
+
+		Root.AddChild(_scoreLabel);
+    }
+
+    public override void Update(float dt)
+    {
+		_scoreLabel.SetText($"Scores: {Globals.Score}");
     }
 
 	public override void Draw()
