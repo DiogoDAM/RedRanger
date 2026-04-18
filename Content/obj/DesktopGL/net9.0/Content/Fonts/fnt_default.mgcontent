@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>/home/diogodam/Gamedev/RedRanger/Content/Fonts/fnt_default.spritefont</SourceFile>
-  <SourceTime>2026-04-17T22:38:23.7006696-03:00</SourceTime>
+  <SourceTime>2026-04-17T23:52:09.1116831-03:00</SourceTime>
   <DestFile>/home/diogodam/Gamedev/RedRanger/Content/bin/DesktopGL/Content/Fonts/fnt_default.xnb</DestFile>
-  <DestTime>2026-04-17T22:38:31.5533661-03:00</DestTime>
+  <DestTime>2026-04-18T11:32:48.1134523-03:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2025-10-20T11:25:32-03:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

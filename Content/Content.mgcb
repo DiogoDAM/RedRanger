@@ -25,6 +25,30 @@
 /processorParam:TextureFormat=Color
 /build:../../../Documentos/Pixel Art/atlas_game.png;Textures/atlas_game.png
 
+#begin ../../../Documentos/Pixel Art/spr_sky_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Documentos/Pixel Art/spr_sky_bg.png;Textures/spr_sky_bg.png
+
+#begin ../../../Documentos/Pixel Art/tree_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Documentos/Pixel Art/tree_bg.png;Textures/spr_trees_bg.png
+
 #begin Fonts/fnt_default.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
